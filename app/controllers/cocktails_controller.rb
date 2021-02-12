@@ -10,7 +10,7 @@ class CocktailsController < ApplicationController
   end
   def create
     @cocktail = Cocktail.new(strong_params)
-    if @cocktail.save
+    if @cocktail.save!
       flash[:success] = "cocktail successfully created"
       redirect_to cocktails_path
     else
@@ -22,6 +22,6 @@ class CocktailsController < ApplicationController
   private
 
   def strong_params
-    params.require(:cocktail).permit(:name)
+    params.require(:cocktail).permit(:name, :photo)
   end
 end
